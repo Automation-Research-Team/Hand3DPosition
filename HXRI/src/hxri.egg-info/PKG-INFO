@@ -1,0 +1,30 @@
+Metadata-Version: 2.1
+Name: hxri
+Version: 0.0.0.3
+Summary: Enrique Coronado
+Home-page: http://enriquecoronadozu.github.io
+Author: Enrique Coronado
+Author-email: enriquecoronadozu@gmail.com
+Keywords: Technology
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Text Processing
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# HXRI
+
+py -3 setup.py sdist bdist_wheel
+py -3 -m pip install dist/hxri-0.0.0.3.tar.gz

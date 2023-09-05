@@ -1,0 +1,13 @@
+LICENSE
+README.md
+setup.py
+src/hxri/BodyDetector.py
+src/hxri/FaceDetector.py
+src/hxri/HandDetector.py
+src/hxri/ObjectDetector.py
+src/hxri/__init__.py
+src/hxri.egg-info/PKG-INFO
+src/hxri.egg-info/SOURCES.txt
+src/hxri.egg-info/dependency_links.txt
+src/hxri.egg-info/requires.txt
+src/hxri.egg-info/top_level.txt
