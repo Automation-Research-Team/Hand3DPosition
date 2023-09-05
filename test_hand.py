@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 #Crate the HandDetector object
 h = hxri.HandDetector.MediapipeHand()
 
-file = open('C:/Users/andreas/Documents/cameraData.json')
+file = open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json')
 camera_data = json.load(file) #Charge the camera mtx and distortion from json file
 
 plt.ion()

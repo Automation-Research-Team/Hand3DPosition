@@ -64,7 +64,7 @@ camera_data['distortion'] = dist
 
 json.JSONEncoder().encode(camera_data)
 
-with open('C:/Users/andreas/Documents/cameraData.json', 'w') as outfile:
+with open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json', 'w') as outfile:
     json.dump(camera_data,outfile)
 
 print("Datos guardados \n")

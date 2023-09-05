@@ -49,7 +49,7 @@ def plotHand(world_points):
     ax.cla()
 
 #Load the camera information from a json file
-file = open('C:/Users/andreas/Documents/cameraData.json')
+file = open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json')
 camera_data = json.load(file)
 
 node = nep.node("subscriber_tk")    # Create a new node                    
