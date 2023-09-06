@@ -10,6 +10,7 @@ h = hxri.HandDetector.MediapipeHand()
 file = open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json')
 camera_data = json.load(file) #Charge the camera mtx and distortion from json file
 
+#variables to plot
 plt.ion()
 fig = plt.figure()
 ax1 = fig.add_subplot(projection ='3d')
@@ -20,12 +21,14 @@ def getHandPoints(world_points, label, id):
     x = []
     y = []
     z = []
+    #Get the x,y,z coordinates and store them in arrays
     for k in world_points[label]['position']:
                     pose = world_points[label]['position'][k]
                     x.append(pose[0])
                     z.append(pose[1])
                     y.append(pose[2])
-
+    
+    #Unite the points to create the hand figure
     if (id == 1): 
         ax1.plot(x[0:5],y[0:5],z[0:5])
     else:
@@ -46,11 +49,12 @@ def getHandPoints(world_points, label, id):
         # plotting
         ax2.scatter(x, y, z)
 
-#Plot the hand points detected in the real world
+#Plot the hand points detected 
 def plotHand(world_points, id):
     global ax1, ax2
     if(id == 1):
         ax1.cla()
+        #update points, and try to check if there is left or right hand
         try:
             getHandPoints(world_points,'left', id)
         except:

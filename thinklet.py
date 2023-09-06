@@ -9,6 +9,7 @@ plt.ion()
 fig = plt.figure()
 ax = plt.axes(projection ='3d')
 
+#store the coordinates of the hand in an array
 def getHandPoints(world_points, label):
     global fig, ax
     x = []
@@ -20,12 +21,13 @@ def getHandPoints(world_points, label):
                     y.append(pose[1])
                     z.append(pose[2])
 
+    #Draw the figure of the hand
     ax.plot(x[0:5],y[0:5],z[0:5])
     for i in range(0,4):
          ax.plot(x[5+(i*4):9+(i*4)],y[5+(i*4):9+(i*4)],z[5+(i*4):9+(i*4)])
 
     ax.plot([x[0],x[5],x[9],x[13],x[17],x[0]],[y[0],y[5],y[9],y[13],y[17],y[0]],[z[0],z[5],z[9],z[13],z[17],z[0]])    
-    # plotting
+    # Add the camera coordinate
     ax.scatter(0,0,0)
     ax.scatter(x, y, z)
 
@@ -69,15 +71,13 @@ while True:
         #Get World points in meters
         world_points = h.getWorldPoints(msg,mtx,distortion)
         try:
-            # print('Landmark Left', image_points["left"]['position']['THUMB_TIP'], '\n')
-            # print('world Landmark Left', model_points["world_left"]['world_position']['THUMB_TIP'], '\n')
-
+            #plot world_points and print coordinates
             plotHand(world_points)
             print(world_points)
-            #print("Right:", world_points['Right']['position']['THUMB_TIP'], '\n')
         except:
             print('No hand')
 
+        #show the frame with landmarks 
         cv2.imshow("Result", h.drawLandmarks(msg,1))
         key = cv2.waitKey(1) & 0xFF
         if key == ord('q') or key == ord('Q') or key == 0x1b:

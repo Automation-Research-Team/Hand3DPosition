@@ -344,7 +344,7 @@ class MediapipeHand():
 
                     transformation = np.eye(4)  # needs to 4x4 because you have to use homogeneous coordinates
                     transformation[0:3, 3] = translation_vector.squeeze()
-                    # the transformation consists only of the translation, because the rotation is accounted for in the model coordinates. Take a look at this (https://codepen.io/mediapipe/pen/RwGWYJw to see how the model coordinates behave - the hand rotates, but doesn't translate
+                    # the transformation consists only of the translation, because the rotation is accounted for in the model coordinates. 
 
                     # transform model coordinates into homogeneous coordinates
                     model_points_hom = np.concatenate((model_points, np.ones((21, 1))), axis=1)
