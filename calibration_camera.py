@@ -39,6 +39,7 @@ while True:
         key = cv.waitKey(1) & 0xFF
         if ret == True:
             corners2 = cv.cornerSubPix(gray,corners, (11,11), (-1,-1), criteria)
+            #Save the chess board image if s is pressed
             if key == ord('s') or key == ord('S'):
                 objpoints.append(objp)
                 imgpoints.append(corners2)
@@ -53,17 +54,19 @@ while True:
         if key == ord('q') or key == ord('Q') or key == 0x1b or cont == 10:
             break
             
-
+#Get the distotion vector and mtrx of the camera
 ret, mtx, dist, rvecs, tvecs = cv.calibrateCamera(objpoints, imgpoints, gray.shape[::-1], None, None)
 
 mtx = mtx.tolist()
 dist = dist.tolist()
 
+#Put the data in a dict
 camera_data['matrix'] = mtx
 camera_data['distortion'] = dist
 
 json.JSONEncoder().encode(camera_data)
 
+#Save the data in a file, change this path to one in your own computer
 with open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json', 'w') as outfile:
     json.dump(camera_data,outfile)
 
