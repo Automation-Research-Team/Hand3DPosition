@@ -3,8 +3,9 @@ import cv2
 import numpy as np
 import json
 import matplotlib.pyplot as plt
+import time
 
-#Crate the HandDetector object
+#Create the HandDetector object
 h = hxri.HandDetector.MediapipeHand()
 
 file = open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json')
@@ -15,6 +16,9 @@ plt.ion()
 fig = plt.figure()
 ax1 = fig.add_subplot(projection ='3d')
 ax2 = fig.add_subplot(projection ='3d')
+ax2.axes.set_xlim3d(left=-4, right=4)
+ax2.axes.set_ylim3d(bottom=-4, top=4) 
+ax2.axes.set_zlim3d(bottom=-4, top=4) 
 
 def getHandPoints(world_points, label, id):
     global ax1, ax2
@@ -24,7 +28,7 @@ def getHandPoints(world_points, label, id):
     #Get the x,y,z coordinates and store them in arrays
     for k in world_points[label]['position']:
                     pose = world_points[label]['position'][k]
-                    x.append(pose[0])
+                    x.append(pose[0]*-1)
                     z.append(pose[1])
                     y.append(pose[2])
     
@@ -78,9 +82,13 @@ def plotHand(world_points, id):
             pass
         # plotting
         ax2.scatter(0,0,0)
+        # ax2.scatter(-0.4,-0.4,-0.1)
+        # ax2.scatter(-0.4,-0.4,0.1)
+        # ax2.scatter(0.4,-0.4,-0.1)
+        # ax2.scatter(0.4,-0.4,0.1)
         ax2.set_title('world model') 
     plt.show(block=False)
-    plt.pause(0.001)
+    plt.pause(0.0001)
 
 
 cap = cv2.VideoCapture(0)  

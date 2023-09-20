@@ -47,7 +47,7 @@ def plotHand(world_points):
     ax.scatter(0,0,0)
     ax.set_title('Hands')
     plt.show(block=False)
-    plt.pause(0.01)
+    plt.pause(0.0001)
     ax.cla()
 
 #Load the camera information from a json file
