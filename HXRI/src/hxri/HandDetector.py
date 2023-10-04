@@ -2,6 +2,7 @@ from turtle import left
 import cv2
 import numpy as np
 import mediapipe as mp
+import pyzed.sl as sl
 
 
 class MediapipeHand():
@@ -364,6 +365,60 @@ class MediapipeHand():
 
         
         return world_points_hand
+    
+    def getOpenPose_hands (self, img, point_cloud):
+        frame_height, frame_width, channels = img.shape
+        openPosedic = {"hand_left_keypoints_2d": [], "hand_right_keypoints_2d":[], "hand_left_keypoints_3d": [], "hand_right_keypoints_3d":[]}
+        self.results = self.hands.process(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+
+        if self.results.multi_hand_landmarks:
+            image_points = self.results.multi_hand_landmarks
+            for h_id, hand_landmarks in enumerate(self.results.multi_hand_landmarks):
+                for c_id, hand_class in enumerate(self.results.multi_handedness[h_id].classification):
+                    label = hand_class.label
+                    if label == "Right":
+                        for lm in hand_landmarks.landmark:
+                            openPosedic["hand_right_keypoints_2d"].append(lm.x * frame_height)
+                            openPosedic["hand_right_keypoints_2d"].append(lm.y * frame_width)
+                            openPosedic["hand_right_keypoints_2d"].append(hand_class.score)
+                            try:
+                                err, point_cloud_value = point_cloud.get_value(lm.x * frame_height, lm.y * frame_width)
+                                openPosedic["hand_right_keypoints_3d"].append(point_cloud_value[0])
+                                openPosedic["hand_right_keypoints_3d"].append(point_cloud_value[1])
+                                openPosedic["hand_right_keypoints_3d"].append(point_cloud_value[2])
+                                if(point_cloud_value[0] != 'nan'):
+                                    openPosedic["hand_right_keypoints_3d"].append(1)
+                                else:
+                                    openPosedic["hand_right_keypoints_3d"].append(0)
+                                
+                            except:
+                                openPosedic["hand_right_keypoints_3d"].append(0)
+                                openPosedic["hand_right_keypoints_3d"].append(0)
+                                openPosedic["hand_right_keypoints_3d"].append(0)
+                                openPosedic["hand_right_keypoints_3d"].append(0)
+                    else:
+                        for lm in hand_landmarks.landmark:
+                            openPosedic["hand_left_keypoints_2d"].append(lm.x * frame_height)
+                            openPosedic["hand_left_keypoints_2d"].append(lm.y * frame_width)
+                            openPosedic["hand_left_keypoints_2d"].append(hand_class.score)
+                            try:
+                                err, point_cloud_value = point_cloud.get_value(lm.x * frame_height, lm.y * frame_width)
+                                openPosedic["hand_left_keypoints_3d"].append(point_cloud_value[0])
+                                openPosedic["hand_left_keypoints_3d"].append(point_cloud_value[1])
+                                openPosedic["hand_left_keypoints_3d"].append(point_cloud_value[2])
+                                if(point_cloud_value[0] != 'nan'):
+                                    openPosedic["hand_left_keypoints_3d"].append(1)
+                                else:
+                                    openPosedic["hand_left_keypoints_3d"].append(1)
+                            except:
+                                openPosedic["hand_left_keypoints_3d"].append(0)
+                                openPosedic["hand_left_keypoints_3d"].append(0)
+                                openPosedic["hand_left_keypoints_3d"].append(0)
+                                openPosedic["hand_left_keypoints_3d"].append(0)
+
+        
+        return openPosedic
+                    
 
 
 """

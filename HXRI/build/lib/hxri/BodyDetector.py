@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+import pyzed.sl as sl
 
 
 class MediapipeBody():
@@ -38,6 +39,33 @@ class MediapipeBody():
                       "RIGHT_HEEL",
                       "LEFT_FOOT_INDEX",
                       "RIGHT_FOOT_INDEX"]
+    
+    BODY_OPENPOSE = ["NOSE",
+                      "NECK",
+                      "RIGHT_SHOULDER",
+                      "RIGHT_ELBOW",
+                      "RIGHT_WRIST",
+                      "LEFT_SHOULDER",
+                      "LEFT_ELBOW",
+                      "LEFT_WRIST",
+                      "MidHip",
+                      "RIGHT_HIP",
+                      "RIGHT_KNEE",
+                      "RIGHT_ANKLE",
+                      "LEFT_HIP",
+                      "LEFT_KNEE",
+                      "LEFT_ANKLE",
+                      "RIGHT_EYE",
+                      "LEFT_EYE",
+                      "RIGHT_EAR",
+                      "LEFT_EAR",
+                      "LEFT_FOOT_INDEX",
+                      "LEFT_SMALL_TOE",
+                      "LEFT_HEEL",
+                      "RIGHT_FOOT_INDEX",
+                      "RIGHT_SMALL_TOE",
+                      "RIGHT_HEEL",
+                      "BACKGROUND"]
 
     BODY_VECTORS = {"SHOULDER_ELBOW_L": ["LEFT_SHOULDER", "LEFT_ELBOW"],
                     "SHOULDER_ELBOW_R": ["RIGHT_SHOULDER", "RIGHT_ELBOW"],
@@ -141,17 +169,67 @@ class MediapipeBody():
                 pass
 
         return pose_values
+    
+    def openPose_body(self, img, point_cloud):
+        #print("hola")
+
+        img.flags.writeable = False
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        self.body_results = self.skeleton_detection.process(img)
+        y_resolution, x_resolution, c = img.shape
+        img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+
+        # Draw the pose annotation on the image.
+        img.flags.writeable = True
+        pose_values = {"pose_keypoints_2d":[], "pose_keypoints_3d" : []}
+
+        for element in self.BODY_OPENPOSE:
+            #print(element)
+            try:
+                value = self.body_results.pose_landmarks.landmark[self.mp_pose.PoseLandmark[element]]
+                pose_values["pose_keypoints_2d"].append(value.x * x_resolution)
+                pose_values["pose_keypoints_2d"].append(value.y * y_resolution)
+                pose_values["pose_keypoints_2d"].append(value.visibility)
+                err, point_cloud_value = point_cloud.get_value(value.x * x_resolution, value.y * y_resolution)
+                pose_values["pose_keypoints_3d"].append(point_cloud_value[0])
+                pose_values["pose_keypoints_3d"].append(point_cloud_value[1])
+                pose_values["pose_keypoints_3d"].append(point_cloud_value[2])
+                if(point_cloud_value[0] != 'nan'):
+                    pose_values["pose_keypoints_3d"].append(1)
+                else:
+                    pose_values["pose_keypoints_3d"].append(0)
+                
+                #print(value.visibility)
+            except:
+                pose_values["pose_keypoints_2d"].append(0)
+                pose_values["pose_keypoints_2d"].append(0)
+                pose_values["pose_keypoints_2d"].append(0)
+                pose_values["pose_keypoints_3d"].append(0)
+                pose_values["pose_keypoints_3d"].append(0)
+                pose_values["pose_keypoints_3d"].append(0)
+                pose_values["pose_keypoints_3d"].append(0)
+                #print(0)
+            
+            #print(len(pose_values["pose_keypoints_2d"]))
+
+        #print("adios")
+        
+        return pose_values
 
 
-"""
-# OpenCV code
-import cv2
-img = cv2.imread('yoga.jpg')
-h = MediapipeBody();
-landmarks, vectors, angles = h.getBodyInfo(img)
 
-# Display image with drawing hands
+# # OpenCV code
+# import cv2
+# img = cv2.imread('yoga.jpg')
+# h = MediapipeBody();
+# landmarks = h.openPose_body(img)
 
-cv2.imshow("Result", h.drawLandmarks(img))
-cv2.waitKey(0)
-"""
+# #print(landmarks)
+# print("--------------------------------")
+# print(len(landmarks["pose_keypoints_2d"]))
+
+# # Display image with drawing hands
+
+# # cv2.imshow("Result", h.drawLandmarks(img))
+# # cv2.waitKey(0)
+
