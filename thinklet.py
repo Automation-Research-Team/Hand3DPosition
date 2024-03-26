@@ -56,7 +56,7 @@ camera_data = json.load(file)
 
 node = nep.node("subscriber_tk")    # Create a new node                    
 h = hxri.HandDetector.MediapipeHand()
-sub = node.new_sub("androidCamera", "image")   # Select the configuration of the subscriber
+sub = node.new_sub("androidCamera", "images")   # Select the configuration of the subscriber
 while True:
     s, msg = sub.listen()       # Non blocking socket
     if s:                       # Info avaliable only if s == True

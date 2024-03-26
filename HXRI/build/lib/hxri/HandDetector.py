@@ -2,7 +2,7 @@ from turtle import left
 import cv2
 import numpy as np
 import mediapipe as mp
-import pyzed.sl as sl
+
 
 
 class MediapipeHand():
