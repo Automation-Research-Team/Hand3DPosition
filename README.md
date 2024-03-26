@@ -107,3 +107,4 @@ This will open a new window in your default web browser, displaying the images t
 4. **Obtain 3D Positions Using MediaPipe**
 
   After successfully acquiring the necessary parameters, execute the `thinklet.py` script. This script utilizes the MediaPipe framework to compute and output 3D positions from the input data.
+
