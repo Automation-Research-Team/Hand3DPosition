@@ -42,7 +42,7 @@ Follow the steps below to set up your development environment:
 
   For installation instructions and more information, visit the official GitHub repository: [scrcpy on GitHub](https://github.com/Genymobile/scrcpy)
 
-3. **Install HXRI_android.apk using scrcpy**
+4. **Install HXRI_android.apk using scrcpy**
 
   HXRI_android is an Android application that allows you to send images from your Android device (in this case, Thinklet) to your computer.
 
@@ -52,7 +52,7 @@ Follow the steps below to set up your development environment:
   - Locate the HXRI_android.apk file on your computer.
   - Copy the HXRI_android.apk file and paste it onto the scrcpy screen that is mirroring your Android device. The installation process should begin automatically.
 
-4. **Change permissions of HXRI_android.apk to enable camera usage**
+5. **Change permissions of HXRI_android.apk to enable camera usage**
 
   After installing the HXRI_android application, you need to grant it permission to use the camera on your Android device. Follow these steps:
 
@@ -94,7 +94,7 @@ To confirm that the HXRI_android application is successfully sending images to y
 
 This will open a new window in your default web browser, displaying the images transmitted from the Thinklet device.
 
-4. **Camera Calibration**
+5. **Camera Calibration**
 
   Follow the steps below to calibrate your camera:
 
