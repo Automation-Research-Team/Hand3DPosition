@@ -36,7 +36,7 @@ Follow the steps below to set up your development environment:
 
 3. **Install scrcpy**
 
-  scrcpy is a versatile tool that mirrors Android devices (both video and audio) connected via USB or over TCP/IP. It allows you to control the device using your computer's keyboard and mouse. 
+   Scrcpy is a versatile tool that mirrors Android devices (both video and audio) connected via USB or over TCP/IP. It allows you to control the device using your computer's keyboard and mouse. 
 
   Additionally, scrcpy provides a convenient way to install APK Android applications. Simply copy and paste the required APK onto the scrcpy screen mirroring the Android device.
 
