@@ -1,21 +1,12 @@
 # Hand_3DPosition
 Get the 3D position of a hand using MediaPipe
 
-**How to use it:**
+# Install python libraries
 
-- Change the path of the .json file in calibration_camera.py, test_hand.py and thinklet.py to a path in your computer.
-
-- Install HXRI and run the commands in the readme inside the folder
-
-  **If you want to use it with laptop webcam:**
-  
-  - In calibration_camera.py descomment the lines to use the frame from the webcam and comment the NEP+ lines
-  - Run calibration_camera.py 
-  - Show a chess dashboard to the camera
-  - Click 's' with the dashboard in different positions to do the calibration
-  - Once you get the parameters run test_hand.py
-  
-  
+pip install mediapipe=0.10.3
+pip install nep
+pip install matplotlib
+pip install opencv-python==4.7.0.68
 
 
 # Installation Guide for Thinklet
@@ -41,7 +32,7 @@ Follow the steps below to set up your development environment:
 
    For installation instructions and more information, visit the official GitHub repository: [scrcpy on GitHub](https://github.com/Genymobile/scrcpy)
 
-5. **Install HXRI_android.apk using scrcpy**
+4. **Install HXRI_android.apk using scrcpy**
    HXRI_android is an Android application that allows you to send images from your Android device (in this case, Thinklet) to your computer.
    To install HXRI_android.apk using scrcpy, follow these steps:
    - Ensure your Android device is connected to your computer and scrcpy is running.
@@ -66,12 +57,12 @@ Follow the steps below to send images from your Thinklet device to your computer
 1. **Start the NEP Master**
    Run the NEP-CLI master command in your terminal:
 
-`nep master`
+   `nep master`
 
 2. **Launch the HXRI_android Application**
    Use scrcpy to execute the HXRI_android application on your Thinklet device.
 
-4. **Set the Computer's IP Address**
+3. **Set the Computer's IP Address**
    The HXRI_android application needs to know the IP address of the computer it will connect to. You can obtain this by running the following NEP-CLI command in your terminal:
 
    `nep ip`
@@ -84,14 +75,24 @@ Follow the steps below to send images from your Thinklet device to your computer
 
    This will open a new window in your default web browser, displaying the images transmitted from the Thinklet device.
 
-6. **Camera Calibration**
+5. **Camera Calibration**
    Follow the steps below to calibrate your camera:
-   - Execute the `calibration_camera.py` script. This script initiates the calibration process.
+   - Execute the `CalibrationCamera.py` script. This script initiates the calibration process.
    - Present a chessboard pattern to the camera. This pattern helps the calibration algorithm determine lens distortions.
    - Press the 's' key while holding the chessboard in various positions and orientations. Each press captures a snapshot for the calibration process.
 
      Note: Ensure the chessboard fills a significant portion of the frame in each snapshot and that the pattern is clearly visible.
 
-4. **Obtain 3D Positions Using MediaPipe**
-   After successfully acquiring the necessary parameters, execute the `thinklet.py` script. This script utilizes the MediaPipe framework to compute and output 3D positions from the input data.
+6. **Obtain 3D Positions Using MediaPipe**
+   After successfully acquiring the necessary parameters, execute the `Thinklet.py` script. This script utilizes the MediaPipe framework to compute and output 3D positions from the input data.
 
+
+#  Use with laptop webcam:**
+  
+  - In `CalibrationCamera.py` descomment the lines to use the frame from the webcam and comment the NEP+ lines
+  - Run `CalibrationCamera.py`
+  - Show a chess dashboard to the camera
+  - Click 's' with the dashboard in different positions to do the calibration
+  - Once you get the parameters run `TestWebcam.py`
+  
+  

@@ -1,7 +1,7 @@
 import cv2
 import nep
 import numpy as np
-import hxri.HandDetector
+import HandDetector
 import json
 import matplotlib.pyplot as plt
 
@@ -55,7 +55,7 @@ file = open('cameraData.json')
 camera_data = json.load(file)
 
 node = nep.node("subscriber_tk")    # Create a new node                    
-h = hxri.HandDetector.MediapipeHand()
+h = HandDetector.MediapipeHand()
 sub = node.new_sub("androidCamera", "images")   # Select the configuration of the subscriber
 while True:
     s, msg = sub.listen()       # Non blocking socket

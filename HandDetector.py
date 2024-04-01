@@ -1,4 +1,3 @@
-from turtle import left
 import cv2
 import numpy as np
 import mediapipe as mp
@@ -420,52 +419,3 @@ class MediapipeHand():
         return openPosedic
                     
 
-
-"""
-# OpenCV code
-import cv2
-img = cv2.imread('sample.png')
-
-h = MediapipeHand();
-landmarks, vectors, angles = h.getHandsInfo(img)
-
-print (vectors)
-print (angles)
-
-
-# Display image with drawing hands
-
-cv2.imshow("Result", h.drawLandmarks(img))
-cv2.waitKey(0)
-"""
-
-"""
-import cv2
-
-h = MediapipeHand()
-
-cap = cv2.VideoCapture(0)  
-if cap.isOpened():
-    while True:
-        success, img = cap.read()
-        if not success:
-            continue
-        else:
-            image_points, model_points, vectors, angles = h.getHandsInfo(img)
-            world_points = h.getWorldPoints(img)
-            #print("Digital landmarks \n")
-            #print (image_points,"\n")
-            #print("world landmarks \n")
-            #print(model_points,"\n")
-
-            print("World points \n")
-            print(world_points, "\n")
-
-            cv2.imshow("Result", h.drawLandmarks(img,1))
-            key = cv2.waitKey(1) & 0xFF
-
-            if key == ord('q') or key == ord('Q') or key == 0x1b:
-                break
-cap.release()
-
-"""

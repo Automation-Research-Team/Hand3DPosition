@@ -1,4 +1,4 @@
-import hxri.HandDetector
+import HandDetector
 import cv2
 import numpy as np
 import json
@@ -6,9 +6,9 @@ import matplotlib.pyplot as plt
 import time
 
 #Create the HandDetector object
-h = hxri.HandDetector.MediapipeHand()
+h = HandDetector.MediapipeHand()
 
-file = open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json')
+file = open('cameraData.json')
 camera_data = json.load(file) #Charge the camera mtx and distortion from json file
 
 #variables to plot
