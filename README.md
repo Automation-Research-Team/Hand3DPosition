@@ -2,11 +2,12 @@
 Get the 3D position of a hand using MediaPipe
 
 # Install python libraries
-
+`
 pip install mediapipe=0.10.3
 pip install nep
 pip install matplotlib
 pip install opencv-python==4.7.0.68
+`
 
 
 # Installation Guide for Thinklet
