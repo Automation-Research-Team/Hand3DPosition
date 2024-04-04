@@ -87,7 +87,7 @@ Follow the steps below to send images from your Thinklet device to your computer
    After successfully acquiring the necessary parameters, execute the `Thinklet.py` script. This script utilizes the MediaPipe framework to compute and output 3D positions from the input data.
 
 
-#  Use with laptop webcam:**
+#   Use with laptop webcam:
   
   - In `CalibrationCamera.py` descomment the lines to use the frame from the webcam and comment the NEP+ lines
   - Run `CalibrationCamera.py`
