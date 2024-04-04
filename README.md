@@ -1,6 +1,8 @@
 # Hand_3DPosition
 Get the 3D position of a hand using MediaPipe
 
+Note: StreamCamera.apk is in the same repository in Releases/StreamCamera/Assets/StreamCamera.apk
+
 # Install python libraries
 `pip install mediapipe=0.10.3`
 
