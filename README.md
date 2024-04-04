@@ -2,11 +2,13 @@
 Get the 3D position of a hand using MediaPipe
 
 # Install python libraries
-`
-pip install mediapipe=0.10.3
-pip install nep
-pip install matplotlib
-pip install opencv-python==4.7.0.68
+`pip install mediapipe=0.10.3`
+
+`pip install nep`
+
+`pip install matplotlib`
+
+`pip install opencv-python==4.7.0.68`
 `
 
 
@@ -33,22 +35,22 @@ Follow the steps below to set up your development environment:
 
    For installation instructions and more information, visit the official GitHub repository: [scrcpy on GitHub](https://github.com/Genymobile/scrcpy)
 
-4. **Install HXRI_android.apk using scrcpy**
-   HXRI_android is an Android application that allows you to send images from your Android device (in this case, Thinklet) to your computer.
-   To install HXRI_android.apk using scrcpy, follow these steps:
+4. **Install StreamCamera.apk using scrcpy**
+   StreamCamera is an Android application that allows you to send images from your Android device (in this case, Thinklet) to your computer.
+   To install StreamCamera.apk using scrcpy, follow these steps:
    - Ensure your Android device is connected to your computer and scrcpy is running.
-   - Locate the HXRI_android.apk file on your computer.
-   - Copy the HXRI_android.apk file and paste it onto the scrcpy screen that is mirroring your Android device. The installation process should begin automatically.
+   - Locate the StreamCamera.apk file on your computer.
+   - Copy the StreamCamera.apk file and paste it onto the scrcpy screen that is mirroring your Android device. The installation process should begin automatically.
 
-5. **Change permissions of HXRI_android.apk to enable camera usage**
+5. **Change permissions of StreamCamera.apk to enable camera usage**
 
-   After installing the HXRI_android application, you need to grant it permission to use the camera on your Android device. Follow these steps:
+   After installing the StreamCamera application, you need to grant it permission to use the camera on your Android device. Follow these steps:
    - On your Android device, go to Settings > Apps & notifications.
-   - Find and select the HXRI_android application.
+   - Find and select the StreamCamera application.
    - Tap on Permissions.
    - Find and toggle on the Camera permission.
 
-  Now, the HXRI_android application should have the necessary permissions to access and use the camera on your Android device.
+  Now, the StreamCamera application should have the necessary permissions to access and use the camera on your Android device.
 
 
 # Sending Images from Thinklet to the Computer
@@ -60,18 +62,18 @@ Follow the steps below to send images from your Thinklet device to your computer
 
    `nep master`
 
-2. **Launch the HXRI_android Application**
-   Use scrcpy to execute the HXRI_android application on your Thinklet device.
+2. **Launch the StreamCamera Application**
+   Use scrcpy to execute the StreamCamera application on your Thinklet device.
 
 3. **Set the Computer's IP Address**
-   The HXRI_android application needs to know the IP address of the computer it will connect to. You can obtain this by running the following NEP-CLI command in your terminal:
+   The StreamCamera application needs to know the IP address of the computer it will connect to. You can obtain this by running the following NEP-CLI command in your terminal:
 
    `nep ip`
 
-   Once you have the IP address, enter it into the text field in the HXRI_android application and press the 'Connect' button.
+   Once you have the IP address, enter it into the text field in the StreamCamera application and press the 'Connect' button.
 
 4. **Verify Image Transmission**
-   To confirm that the HXRI_android application is successfully sending images to your computer, run the following command in your terminal:
+   To confirm that the StreamCamera application is successfully sending images to your computer, run the following command in your terminal:
    `nep show androidCamera images`
 
    This will open a new window in your default web browser, displaying the images transmitted from the Thinklet device.
