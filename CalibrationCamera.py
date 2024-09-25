@@ -5,11 +5,14 @@ import glob
 import json
 import nep
 
+square_size = 4.5 #cm
+
 # termination criteria
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 # prepare object points, like (0,0,0), (1,0,0), (2,0,0) ....,(6,5,0)
 objp = np.zeros((5*7,3), np.float32)
 objp[:,:2] = np.mgrid[0:7,0:5].T.reshape(-1,2)
+objp = objp*square_size
 # Arrays to store object points and image points from all the images.
 objpoints = [] # 3d point in real world space
 imgpoints = [] # 2d points in image plane.
@@ -19,7 +22,7 @@ camera_data = {'matrix' : None, 'distortion' :None }
 
 
 node = nep.node("subscriber_tk")    # Create a new node                    
-sub = node.new_sub("test", "image")   # Select the configuration of the subscriber
+sub = node.new_sub("androidCamera", "images")   # Select the configuration of the subscriber
 
 imgs = []
 
@@ -67,9 +70,8 @@ camera_data['distortion'] = dist
 json.JSONEncoder().encode(camera_data)
 
 #Save the data in a file, change this path to one in your own computer
-with open('C:/Users/andreas/Documents/GitHub/Hand_3DPosition/cameraData.json', 'w') as outfile:
+with open('C:/Users/jchr2003/Desktop/Hand3DPosition-main/cameraDataNew.json', 'w') as outfile:
     json.dump(camera_data,outfile)
-
 #Announce when data are saved
 print("Data saved \n")
 cv.destroyAllWindows()
